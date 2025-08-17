@@ -2,39 +2,92 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Modern Futuristic Admin Dashboard Design System */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Core Background & Foreground */
+    --background: 222 84% 4.9%;
+    --foreground: 210 40% 98%;
+    
+    /* Surface Colors */
+    --surface: 220 27% 8%;
+    --surface-bright: 220 20% 12%;
+    --surface-dim: 220 27% 6%;
+    
+    /* Glass Effects */
+    --glass: 220 20% 15%;
+    --glass-border: 220 20% 25%;
+    
+    /* Accent Colors */
+    --primary: 193 100% 50%;
+    --primary-glow: 193 100% 70%;
+    --secondary: 270 100% 65%;
+    --accent: 310 100% 70%;
+    
+    /* Status Colors */
+    --success: 142 76% 36%;
+    --warning: 38 92% 50%;
+    --error: 0 84% 60%;
+    
+    /* Text Colors */
+    --text-primary: 210 40% 98%;
+    --text-secondary: 215 20% 65%;
+    --text-muted: 215 16% 47%;
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(193 100% 50%), hsl(270 100% 65%));
+    --gradient-surface: linear-gradient(135deg, hsl(220 27% 8%), hsl(220 20% 12%));
+    --gradient-glow: linear-gradient(135deg, hsl(193 100% 50% / 0.1), hsl(270 100% 65% / 0.1));
+    
+    /* Shadows */
+    --shadow-primary: 0 8px 32px hsl(193 100% 50% / 0.3);
+    --shadow-surface: 0 4px 16px hsl(220 27% 4% / 0.5);
+    --shadow-glow: 0 0 40px hsl(193 100% 50% / 0.2);
+    
+    /* Borders */
+    --border-primary: hsl(193 100% 50% / 0.3);
+    --border-glass: hsl(220 20% 25% / 0.5);
+    --border-muted: hsl(220 20% 20%);
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-spring: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    
+    /* Layout */
+    --sidebar-width: 280px;
+    --sidebar-width-collapsed: 80px;
+    --header-height: 80px;
+    
+    /* Updated shadcn variables for dark theme */
+    --background: 222 84% 4.9%;
+    --foreground: 210 40% 98%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    /* Shadcn compatibility - dark theme */
+    --card: 220 27% 8%;
+    --card-foreground: 210 40% 98%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 220 20% 12%;
+    --popover-foreground: 210 40% 98%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 193 100% 50%;
+    --primary-foreground: 222 84% 4.9%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 220 20% 12%;
+    --secondary-foreground: 215 20% 65%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 220 20% 12%;
+    --muted-foreground: 215 16% 47%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 270 100% 65%;
+    --accent-foreground: 210 40% 98%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 220 20% 20%;
+    --input: 220 20% 15%;
+    --ring: 193 100% 50%;
 
     --radius: 0.5rem;
 
@@ -100,6 +153,130 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased overflow-x-hidden;
+  }
+}
+
+@layer components {
+  /* Glass morphism effect */
+  .glass {
+    @apply bg-glass/50 backdrop-blur-xl border border-glass-border/30;
+  }
+  
+  /* Gradient backgrounds */
+  .gradient-primary {
+    background: var(--gradient-primary);
+  }
+  
+  .gradient-surface {
+    background: var(--gradient-surface);
+  }
+  
+  .gradient-glow {
+    background: var(--gradient-glow);
+  }
+  
+  /* Custom shadows */
+  .shadow-primary {
+    box-shadow: var(--shadow-primary);
+  }
+  
+  .shadow-surface {
+    box-shadow: var(--shadow-surface);
+  }
+  
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+  
+  /* Neon glow effect */
+  .neon-glow {
+    @apply shadow-glow;
+    text-shadow: 0 0 10px hsl(var(--primary) / 0.5);
+  }
+  
+  /* Animated gradient border */
+  .gradient-border {
+    position: relative;
+    background: linear-gradient(135deg, hsl(var(--surface)), hsl(var(--surface-bright)));
+  }
+  
+  .gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    background: var(--gradient-primary);
+    border-radius: inherit;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: xor;
+  }
+  
+  /* Smooth transitions */
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+  
+  .transition-spring {
+    transition: var(--transition-spring);
+  }
+}
+
+@layer utilities {
+  /* Surface colors */
+  .bg-surface {
+    background-color: hsl(var(--surface));
+  }
+  
+  .bg-surface-bright {
+    background-color: hsl(var(--surface-bright));
+  }
+  
+  .bg-surface-dim {
+    background-color: hsl(var(--surface-dim));
+  }
+  
+  /* Text colors */
+  .text-primary {
+    color: hsl(var(--text-primary));
+  }
+  
+  .text-secondary {
+    color: hsl(var(--text-secondary));
+  }
+  
+  .text-muted {
+    color: hsl(var(--text-muted));
+  }
+  
+  /* Custom animations */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-pulse-slow {
+    animation: pulse 3s ease-in-out infinite;
+  }
+  
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 10px hsl(var(--primary) / 0.5);
+  }
+  to {
+    text-shadow: 0 0 20px hsl(var(--primary) / 0.8), 0 0 30px hsl(var(--primary) / 0.6);
   }
 }
