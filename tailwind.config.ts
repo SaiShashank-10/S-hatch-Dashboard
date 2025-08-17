@@ -18,6 +18,11 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				sans: ['Inter', 'system-ui', 'sans-serif'],
+				mono: ['JetBrains Mono', 'monospace'],
+				display: ['Space Grotesk', 'Inter', 'sans-serif'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -28,15 +33,18 @@ export default {
 					DEFAULT: 'hsl(var(--surface))',
 					bright: 'hsl(var(--surface-bright))',
 					dim: 'hsl(var(--surface-dim))',
+					elevated: 'hsl(var(--surface-elevated))',
 				},
 				glass: {
 					DEFAULT: 'hsl(var(--glass))',
 					border: 'hsl(var(--glass-border))',
+					hover: 'hsl(var(--glass-hover))',
 				},
 				text: {
 					primary: 'hsl(var(--text-primary))',
 					secondary: 'hsl(var(--text-secondary))',
 					muted: 'hsl(var(--text-muted))',
+					disabled: 'hsl(var(--text-disabled))',
 				},
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
