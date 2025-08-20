@@ -11,6 +11,7 @@ import Profile from "./pages/Profile";
 import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 import RealityCheck from "./pages/RealityCheck";
+import DemoOne from "./pages/demo";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +27,7 @@ const App = () => (
             <Route path="/reports" element={<Reports />} />
             <Route path="/scenarios" element={<Scenarios />} />
             <Route path="/reality-check" element={<RealityCheck />} />
+            <Route path="/loader-demo" element={<DemoOne />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="*" element={<NotFound />} />
