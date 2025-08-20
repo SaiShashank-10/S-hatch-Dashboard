@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { Badge } from "@/components/ui/badge";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const stats = [
@@ -75,8 +75,10 @@ const Dashboard = () => {
     }
   ];
 
+  const navigate = useNavigate();
+
   return (
-    <div className="space-y-8">
+  <div className="space-y-8">
       {/* Header */}
       <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
         <div>
@@ -116,6 +118,50 @@ const Dashboard = () => {
           </Card>
         ))}
       </div>
+
+      {/* AI Reality Check (full width above main grid) */}
+      <Card className="glass border-glass-border/50">
+        <CardContent className="p-6">
+          <Button
+            id="ai-reality-check-btn"
+            aria-label="AI Reality Check"
+            onClick={() => navigate('/reality-check')}
+            className="group relative w-full h-16 overflow-hidden rounded-lg gradient-primary text-white border border-primary/30 shadow-[0_0_20px_-6px_rgba(59,130,246,0.6)] transition-all duration-500 ease-out transform-gpu hover:shadow-[0_0_40px_-6px_rgba(59,130,246,0.9)] hover:scale-[1.02] active:scale-95"
+          >
+            {/* Glow ring */}
+            <span
+              className="pointer-events-none absolute -inset-1 rounded-xl bg-gradient-to-r from-primary/25 via-accent/25 to-secondary/25 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+              aria-hidden="true"
+            />
+            {/* Subtle starfield/nebula overlay */}
+            <span
+              className="pointer-events-none absolute inset-0 opacity-60 [background:radial-gradient(60%_60%_at_20%_20%,rgba(255,255,255,0.08)_0%,transparent_60%),radial-gradient(50%_50%_at_80%_30%,rgba(59,130,246,0.12)_0%,transparent_55%)]"
+              aria-hidden="true"
+            />
+            {/* Shine sweep */}
+            <span
+              className="pointer-events-none absolute inset-0 -translate-x-[120%] skew-x-12 bg-gradient-to-r from-transparent via-white/30 to-transparent group-hover:translate-x-[120%] transition-transform duration-700 ease-out"
+              aria-hidden="true"
+            />
+            {/* Border light run (conic spin) */}
+            <span
+              className="pointer-events-none absolute inset-0 rounded-lg ring-1 ring-inset ring-white/10 [mask-image:linear-gradient(black,black)] before:absolute before:inset-0 before:rounded-lg before:content-[''] before:bg-[conic-gradient(var(--tw-gradient-stops))] before:from-primary before:via-accent before:to-secondary before:opacity-20 before:animate-[spin_6s_linear_infinite] before:blur-sm"
+              aria-hidden="true"
+            />
+
+            {/* Default label */}
+            <span className="relative z-10 flex items-center justify-center gap-2 transition-all duration-300 group-hover:opacity-0 group-hover:-translate-y-1">
+              <Brain className="h-5 w-5" />
+              <span className="font-semibold tracking-wide">AI Reality Check</span>
+            </span>
+
+            {/* Hover label */}
+            <span className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center px-6 text-[11px] sm:text-xs font-medium uppercase tracking-[0.2em] opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-out text-white/90 text-center">
+              CLICK TO ENTER 🚀
+            </span>
+          </Button>
+        </CardContent>
+      </Card>
 
       {/* Main Content Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
